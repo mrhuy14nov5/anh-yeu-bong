@@ -3,171 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Bông ❤️</title>
+<title>Gửi Bông — từ Bún ♡</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
 body{
-  background:#020205;
-  color:#fff;
-  font-family:Montserrat,sans-serif;
-}
-.scene{
-  position:fixed;inset:0;
-  display:flex;align-items:center;justify-content:center;
   background:
-    radial-gradient(circle at 50% 45%, rgba(111,32,65,.22), transparent 30%),
-    radial-gradient(circle at 50% 100%, rgba(190,55,92,.10), transparent 40%),
-    #020205;
+    radial-gradient(circle at 20% 10%,rgba(255,190,205,.32),transparent 28%),
+    radial-gradient(circle at 85% 80%,rgba(255,220,160,.25),transparent 30%),
+    #eadfce;
+  color:#49362f;
+  font-family:'Quicksand',sans-serif;
 }
-.vignette{position:absolute;inset:0;box-shadow:inset 0 0 180px #000;pointer-events:none;z-index:5}
-.stars{position:absolute;inset:0}
-.star{
-  position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;
-  opacity:.45;animation:twinkle var(--d) ease-in-out infinite alternate;
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;
+  background-image:url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
 }
-@keyframes twinkle{to{opacity:.08;transform:scale(.35)}}
-
-.content{text-align:center;position:relative;z-index:4;width:90%;max-width:900px}
-.line{
-  opacity:0;letter-spacing:8px;text-transform:uppercase;
-  font-size:11px;font-weight:300;color:rgba(255,255,255,.58);
-  transform:translateY(15px);transition:2s ease;
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:10;overflow:hidden}
+.heart{position:absolute;bottom:-30px;font-size:18px;animation:floatUp linear forwards;opacity:0}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0) scale(.7);opacity:0}
+  10%{opacity:.75} 90%{opacity:.5}
+  100%{transform:translateY(-110vh) rotate(360deg) scale(1.25);opacity:0}
 }
-.line.show{opacity:1;transform:translateY(0)}
-.main{
-  margin-top:22px;font-family:"Cormorant Garamond",serif;
-  font-size:clamp(58px,11vw,135px);font-weight:400;
-  line-height:.9;letter-spacing:2px;
-  opacity:0;filter:blur(12px);transform:scale(1.04);
-  transition:2.8s cubic-bezier(.16,1,.3,1);
-  background:linear-gradient(110deg,#fff 20%,#ffd9e5 50%,#fff 80%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+.wrap{width:min(900px,92%);margin:auto;padding:50px 0 80px}
+.envelope{
+  width:min(620px,100%);margin:0 auto 25px;min-height:160px;
+  position:relative;display:flex;align-items:center;justify-content:center;
 }
-.main.show{opacity:1;filter:blur(0);transform:scale(1)}
-.heart{
-  display:inline-block;color:#ff668d;font-size:.42em;vertical-align:middle;
-  margin-left:12px;filter:drop-shadow(0 0 18px rgba(255,74,120,.75));
-  animation:heartBeat 1.7s ease-in-out infinite;
+.stamp{
+  position:absolute;right:20px;top:0;width:65px;height:65px;border:2px dashed #c98383;
+  border-radius:8px;transform:rotate(7deg);display:flex;align-items:center;justify-content:center;
+  color:#bd6f73;font-family:Caveat;font-size:20px;background:#f8e9df;
 }
-@keyframes heartBeat{50%{transform:scale(1.13)}}
-
-.subtitle{
-  margin-top:28px;font-size:12px;letter-spacing:5px;color:rgba(255,255,255,.48);
-  opacity:0;transform:translateY(12px);transition:2s ease;
+.postmark{position:absolute;left:25px;top:20px;color:#a8867b;font-size:12px;letter-spacing:2px;transform:rotate(-8deg)}
+.open-note{
+  border:0;background:#8e5f57;color:#fff;padding:13px 25px;border-radius:30px;
+  font-weight:700;cursor:pointer;box-shadow:0 8px 25px #80625844;transition:.3s;
 }
-.subtitle.show{opacity:1;transform:translateY(0)}
-
-.flash{
-  position:absolute;inset:0;background:#fff;z-index:10;pointer-events:none;
-  opacity:0;animation:flash 1.3s ease forwards;
+.open-note:hover{transform:translateY(-3px) scale(1.03)}
+.letter{
+  position:relative;background:#fffaf0;max-width:760px;margin:auto;padding:65px clamp(25px,7vw,75px) 55px;
+  box-shadow:0 20px 55px #66504430, inset 0 0 50px #e8d6b833;
+  transform:rotate(-.4deg);border-radius:2px;overflow:hidden;
+  opacity:0;transform:translateY(25px) rotate(-.4deg);transition:1s ease;
 }
-@keyframes flash{0%,65%{opacity:0}72%{opacity:.12}100%{opacity:0}}
-
-.glow{
-  position:absolute;width:420px;height:420px;border-radius:50%;
-  background:rgba(255,66,120,.08);filter:blur(90px);
-  opacity:0;transition:3s ease;
+.letter.show{opacity:1;transform:translateY(0) rotate(-.4deg)}
+.letter:before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(to bottom,transparent 0 42px,#b9988230 43px,#b9988230 44px);
+  pointer-events:none;
 }
-.glow.show{opacity:1}
-
-.intro{
-  position:absolute;inset:0;z-index:20;background:#020205;
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;transition:1.8s cubic-bezier(.77,0,.18,1);
+.tape{position:absolute;top:18px;left:50%;transform:translateX(-50%) rotate(-2deg);width:120px;height:30px;background:#efd6a4aa}
+.date{font-family:Caveat;font-size:22px;color:#8b7067;text-align:right;position:relative}
+.salute{font-family:Caveat;font-size:38px;font-weight:600;margin:28px 0 10px;position:relative}
+.text{font-family:Caveat;font-size:27px;line-height:1.62;position:relative}
+.line{opacity:0;transform:translateY(8px);transition:.8s ease}
+.line.visible{opacity:1;transform:none}
+.highlight{color:#b65f6b;font-weight:700}
+.signature{text-align:right;margin-top:25px;font-family:Caveat;font-size:32px;position:relative}
+.doodle{
+  position:relative;text-align:center;margin:22px 0 10px;font-family:Caveat;font-size:35px;color:#c16b73;
 }
-.intro.hide{opacity:0;transform:scale(1.08);pointer-events:none}
-.intro p{font-size:11px;letter-spacing:6px;color:rgba(255,255,255,.55);margin-bottom:28px}
+.question{
+  margin:40px auto 10px;padding:25px 20px;text-align:center;position:relative;
+  border:2px dashed #d5a39a;border-radius:18px;background:#fff4edaa;
+}
+.question h2{font-family:Caveat;font-size:38px;margin:0 0 18px;color:#9b575d}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn{
-  border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;
-  padding:15px 32px;border-radius:100px;letter-spacing:4px;font-size:10px;
-  cursor:pointer;transition:.4s;font-family:Montserrat,sans-serif;
+  border:0;border-radius:999px;padding:13px 22px;cursor:pointer;font:600 16px Quicksand;
+  transition:.25s;box-shadow:0 6px 15px #8b5b5b22
 }
-.btn:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
-
-.progress{
-  position:absolute;bottom:38px;left:50%;transform:translateX(-50%);
-  width:100px;height:1px;background:rgba(255,255,255,.12);z-index:6;
+.yes{background:#b96c78;color:white}.yes:hover{transform:scale(1.06)}
+.later{background:#f0ded1;color:#6d5148;position:relative}
+.reply{
+  display:none;margin-top:20px;font-family:Caveat;font-size:30px;color:#a65361;
+  animation:pop .6s ease;
 }
-.progress span{display:block;width:0;height:100%;background:#fff;transition:width 8s linear}
-
-.particle{
- position:absolute;width:3px;height:3px;border-radius:50%;background:#ff9db7;
- opacity:0;z-index:3;filter:blur(.5px);
- animation:float 6s ease-in-out forwards;
-}
-@keyframes float{
-  0%{opacity:0;transform:translate(0,30px) scale(.5)}
-  20%{opacity:.5}
-  80%{opacity:.18}
-  100%{opacity:0;transform:translate(var(--x),-180px) scale(1)}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.footer{text-align:center;font-family:Caveat;font-size:21px;color:#80665e;margin-top:25px}
+.flower{position:absolute;font-size:35px;opacity:.55}
+.f1{left:10px;top:120px;transform:rotate(-20deg)}.f2{right:10px;bottom:120px;transform:rotate(20deg)}
+@media(max-width:600px){
+  .wrap{padding-top:25px}.letter{padding:55px 22px 40px}
+  .text{font-size:24px}.salute{font-size:34px}.question h2{font-size:33px}
 }
 </style>
 </head>
 <body>
-<div class="scene">
-  <div class="stars" id="stars"></div>
-  <div class="glow" id="glow"></div>
+<div id="hearts"></div>
 
-  <div class="content">
-    <div class="line" id="line">There is something I want you to know</div>
-    <div class="main" id="main">Anh yêu Bông <span class="heart">♥</span></div>
-    <div class="subtitle" id="sub">more than words could ever say</div>
+<div class="wrap">
+  <div class="envelope">
+    <div class="postmark">FOR MY BÔNG • WITH LOVE</div>
+    <div class="stamp">♡ Bông</div>
+    <button class="open-note" onclick="openLetter()">Mở bức thư của Bún ♡</button>
   </div>
 
-  <div class="progress"><span id="progress"></span></div>
-  <div class="vignette"></div>
-  <div class="flash"></div>
+  <main class="letter" id="letter">
+    <div class="tape"></div>
+    <div class="flower f1">🌷</div><div class="flower f2">🌸</div>
 
-  <div class="intro" id="intro">
-    <p>FOR SOMEONE SPECIAL</p>
-    <button class="btn" id="start">MỞ RA</button>
-  </div>
+    <div class="date">Một ngày rất bình thường…<br>nhưng Bún muốn viết điều không bình thường.</div>
+
+    <div class="salute">Gửi Bông của Bún,</div>
+
+    <div class="text">
+      <div class="line">Thật ra Bún đã nghĩ khá lâu mới quyết định viết những dòng này.</div>
+      <div class="line">Vì có những cảm xúc, nếu chỉ nói bằng một câu “anh thích em”,</div>
+      <div class="line">thì hình như <span class="highlight">chưa đủ để nói hết những gì Bún muốn nói với Bông.</span></div>
+      <br>
+      <div class="line">Từ lúc Bông xuất hiện, những ngày của Bún tự nhiên có thêm một người</div>
+      <div class="line">để mong chờ tin nhắn, để muốn kể những chuyện linh tinh,</div>
+      <div class="line">và đôi khi chỉ cần thấy Bông vui thôi… Bún cũng thấy vui theo.</div>
+      <br>
+      <div class="line">Bún không biết tương lai sẽ như thế nào.</div>
+      <div class="line">Nhưng Bún biết hiện tại mình <span class="highlight">thật sự muốn ở bên Bông</span>,</div>
+      <div class="line">muốn được quan tâm Bông, nghe Bông kể chuyện,</div>
+      <div class="line">và cùng Bông tạo ra thật nhiều kỷ niệm mà sau này nhớ lại vẫn thấy mỉm cười.</div>
+      <br>
+      <div class="line">Có thể Bún không phải người hoàn hảo,</div>
+      <div class="line">cũng chẳng phải lúc nào Bún cũng biết cách nói những điều thật hay.</div>
+      <div class="line">Nhưng nếu Bông cho Bún một cơ hội,</div>
+      <div class="line">Bún sẽ nghiêm túc với tình cảm này.</div>
+
+      <div class="doodle">♡ ･ﾟ✧ ･ﾟ♡ ･ﾟ✧ ･ﾟ♡</div>
+
+      <div class="line">Vậy nên… Bông à,</div>
+      <div class="line"><span class="highlight">Bún muốn hỏi Bông một điều.</span></div>
+    </div>
+
+    <div class="question">
+      <h2>Bông có muốn trở thành người yêu của Bún không? ♡</h2>
+      <div class="buttons">
+        <button class="btn yes" onclick="yesAnswer()">Đồng ý ♡</button>
+        <button class="btn later" id="later" onclick="moveButton()">Để Bông suy nghĩ thêm…</button>
+      </div>
+      <div class="reply" id="reply"></div>
+    </div>
+
+    <div class="signature">
+      Thương Bông,<br>
+      <b>Bún ♡</b>
+    </div>
+  </main>
+
+  <div class="footer">Nếu Bông đang đọc đến đây… thì Bún đã hồi hộp từ nãy giờ rồi. ♡</div>
 </div>
 
 <script>
-const stars=document.getElementById('stars');
-for(let i=0;i<110;i++){
-  const s=document.createElement('i');
-  s.className='star';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  s.style.setProperty('--d',(2+Math.random()*5)+'s');
-  s.style.opacity=.15+Math.random()*.5;
-  stars.appendChild(s);
+const letter=document.getElementById('letter');
+
+function openLetter(){
+  letter.classList.add('show');
+  document.querySelector('.open-note').style.display='none';
+  setTimeout(()=>{
+    document.querySelectorAll('.line').forEach((el,i)=>{
+      setTimeout(()=>el.classList.add('visible'),i*350);
+    });
+  },500);
+  startHearts();
 }
 
-const intro=document.getElementById('intro');
-const line=document.getElementById('line');
-const main=document.getElementById('main');
-const sub=document.getElementById('sub');
-const glow=document.getElementById('glow');
-const progress=document.getElementById('progress');
+function startHearts(){
+  setInterval(()=>{
+    const h=document.createElement('div');
+    h.className='heart';
+    h.textContent=['♡','♥','🌸','✿','💕'][Math.floor(Math.random()*5)];
+    h.style.left=Math.random()*100+'vw';
+    h.style.fontSize=(14+Math.random()*18)+'px';
+    h.style.animationDuration=(5+Math.random()*5)+'s';
+    document.getElementById('hearts').appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+  },700);
+}
 
-document.getElementById('start').onclick=()=>{
-  intro.classList.add('hide');
-  progress.style.width='100%';
-
-  setTimeout(()=>line.classList.add('show'),900);
-  setTimeout(()=>glow.classList.add('show'),1700);
-  setTimeout(()=>main.classList.add('show'),2600);
-  setTimeout(()=>sub.classList.add('show'),4700);
-
-  for(let i=0;i<28;i++){
+function yesAnswer(){
+  const reply=document.getElementById('reply');
+  reply.style.display='block';
+  reply.innerHTML='Bún biết ngay mà… 🥹💕<br>Vậy từ hôm nay, Bông chính thức là người thương của Bún nhé!';
+  for(let i=0;i<22;i++){
     setTimeout(()=>{
-      const p=document.createElement('i');
-      p.className='particle';
-      p.style.left=(35+Math.random()*30)+'%';
-      p.style.top=(55+Math.random()*25)+'%';
-      p.style.setProperty('--x',(Math.random()*160-80)+'px');
-      p.style.animationDuration=(4+Math.random()*4)+'s';
-      document.querySelector('.scene').appendChild(p);
-      setTimeout(()=>p.remove(),8000);
-    },2800+i*130);
+      const h=document.createElement('div');
+      h.className='heart';h.textContent=['♥','♡','💕','🌷'][Math.floor(Math.random()*4)];
+      h.style.left=(35+Math.random()*30)+'vw';
+      h.style.bottom='25%';
+      h.style.fontSize=(18+Math.random()*25)+'px';
+      h.style.animationDuration=(2+Math.random()*2)+'s';
+      document.getElementById('hearts').appendChild(h);
+      setTimeout(()=>h.remove(),4500);
+    },i*90);
   }
-};
+}
+
+function moveButton(){
+  const b=document.getElementById('later');
+  const x=(Math.random()*160-80);
+  const y=(Math.random()*80-40);
+  b.style.transform=`translate(${x}px,${y}px)`;
+  b.textContent=['Khoan đã Bông 😳','Bông nghĩ nhanh thôi nha 🥺','Bún hồi hộp lắm đó…','Một cơ hội thôi mà ♡'][Math.floor(Math.random()*4)];
+}
 </script>
 </body>
 </html>
