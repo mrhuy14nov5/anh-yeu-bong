@@ -1,217 +1,601 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gửi Bông — từ Bún ♡</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f2">
+  <title>Gửi Bông — từ Bún ♡</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;overflow-x:hidden}
-body{
-  background:
-    radial-gradient(circle at 20% 10%,rgba(255,190,205,.32),transparent 28%),
-    radial-gradient(circle at 85% 80%,rgba(255,220,160,.25),transparent 30%),
-    #eadfce;
-  color:#49362f;
-  font-family:'Quicksand',sans-serif;
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;
-  background-image:url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-}
-#hearts{position:fixed;inset:0;pointer-events:none;z-index:10;overflow:hidden}
-.heart{position:absolute;bottom:-30px;font-size:18px;animation:floatUp linear forwards;opacity:0}
-@keyframes floatUp{
-  0%{transform:translateY(0) rotate(0) scale(.7);opacity:0}
-  10%{opacity:.75} 90%{opacity:.5}
-  100%{transform:translateY(-110vh) rotate(360deg) scale(1.25);opacity:0}
-}
-.wrap{width:min(900px,92%);margin:auto;padding:50px 0 80px}
-.envelope{
-  width:min(620px,100%);margin:0 auto 25px;min-height:160px;
-  position:relative;display:flex;align-items:center;justify-content:center;
-}
-.stamp{
-  position:absolute;right:20px;top:0;width:65px;height:65px;border:2px dashed #c98383;
-  border-radius:8px;transform:rotate(7deg);display:flex;align-items:center;justify-content:center;
-  color:#bd6f73;font-family:Caveat;font-size:20px;background:#f8e9df;
-}
-.postmark{position:absolute;left:25px;top:20px;color:#a8867b;font-size:12px;letter-spacing:2px;transform:rotate(-8deg)}
-.open-note{
-  border:0;background:#8e5f57;color:#fff;padding:13px 25px;border-radius:30px;
-  font-weight:700;cursor:pointer;box-shadow:0 8px 25px #80625844;transition:.3s;
-}
-.open-note:hover{transform:translateY(-3px) scale(1.03)}
-.letter{
-  position:relative;background:#fffaf0;max-width:760px;margin:auto;padding:65px clamp(25px,7vw,75px) 55px;
-  box-shadow:0 20px 55px #66504430, inset 0 0 50px #e8d6b833;
-  transform:rotate(-.4deg);border-radius:2px;overflow:hidden;
-  opacity:0;transform:translateY(25px) rotate(-.4deg);transition:1s ease;
-}
-.letter.show{opacity:1;transform:translateY(0) rotate(-.4deg)}
-.letter:before{
-  content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(to bottom,transparent 0 42px,#b9988230 43px,#b9988230 44px);
-  pointer-events:none;
-}
-.tape{position:absolute;top:18px;left:50%;transform:translateX(-50%) rotate(-2deg);width:120px;height:30px;background:#efd6a4aa}
-.date{font-family:Caveat;font-size:22px;color:#8b7067;text-align:right;position:relative}
-.salute{font-family:Caveat;font-size:38px;font-weight:600;margin:28px 0 10px;position:relative}
-.text{font-family:Caveat;font-size:27px;line-height:1.62;position:relative}
-.line{opacity:0;transform:translateY(8px);transition:.8s ease}
-.line.visible{opacity:1;transform:none}
-.highlight{color:#b65f6b;font-weight:700}
-.signature{text-align:right;margin-top:25px;font-family:Caveat;font-size:32px;position:relative}
-.doodle{
-  position:relative;text-align:center;margin:22px 0 10px;font-family:Caveat;font-size:35px;color:#c16b73;
-}
-.question{
-  margin:40px auto 10px;padding:25px 20px;text-align:center;position:relative;
-  border:2px dashed #d5a39a;border-radius:18px;background:#fff4edaa;
-}
-.question h2{font-family:Caveat;font-size:38px;margin:0 0 18px;color:#9b575d}
-.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{
-  border:0;border-radius:999px;padding:13px 22px;cursor:pointer;font:600 16px Quicksand;
-  transition:.25s;box-shadow:0 6px 15px #8b5b5b22
-}
-.yes{background:#b96c78;color:white}.yes:hover{transform:scale(1.06)}
-.later{background:#f0ded1;color:#6d5148;position:relative}
-.reply{
-  display:none;margin-top:20px;font-family:Caveat;font-size:30px;color:#a65361;
-  animation:pop .6s ease;
-}
-@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-.footer{text-align:center;font-family:Caveat;font-size:21px;color:#80665e;margin-top:25px}
-.flower{position:absolute;font-size:35px;opacity:.55}
-.f1{left:10px;top:120px;transform:rotate(-20deg)}.f2{right:10px;bottom:120px;transform:rotate(20deg)}
-@media(max-width:600px){
-  .wrap{padding-top:25px}.letter{padding:55px 22px 40px}
-  .text{font-size:24px}.salute{font-size:34px}.question h2{font-size:33px}
-}
+    :root {
+      color-scheme: light;
+      --ink: #503b3c;
+      --muted: #8c7471;
+      --rose: #bc6877;
+      --rose-dark: #96515e;
+      --paper: #fffaf5;
+      --blush: #f8e9e4;
+      --line: #ead5cc;
+      --shadow: 0 18px 55px #68494a14;
+    }
 
-/* Đồng bộ font viết tay, tránh ký tự tiếng Việt bị fallback sang font khác */
-.salute,.text,.signature,.doodle,.date,.stamp{
-  font-family:'Caveat', cursive !important;
-  font-synthesis:none;
-}
-</style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 10% 5%, #f9d9dc88, transparent 27rem),
+        radial-gradient(circle at 95% 45%, #f4e3c388, transparent 28rem),
+        #fff8f2;
+      color: var(--ink);
+      font-family: 'Quicksand', sans-serif;
+    }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 3px solid #d78d99;
+      outline-offset: 3px;
+    }
+    a { color: inherit; }
+    .page { width: min(1040px, 92%); margin: auto; padding: 24px 0 70px; }
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .topline span:last-child { color: var(--rose); }
+    .hero { padding: 54px 0 28px; text-align: center; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--rose-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+    }
+    h1 {
+      margin: 0;
+      color: var(--rose-dark);
+      font-size: clamp(52px, 9vw, 88px);
+      line-height: .98;
+    }
+    .hero-copy {
+      max-width: 570px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .hero-heart { display: inline-block; animation: heartbeat 1.6s infinite; }
+    @keyframes heartbeat { 50% { transform: scale(1.2); } }
+    .letter-wrap { max-width: 760px; margin: 0 auto 62px; }
+    .envelope {
+      position: relative;
+      display: flex;
+      min-height: 150px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid #efdcd5;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f9e4df, #fff2df);
+      box-shadow: var(--shadow);
+    }
+    .envelope::before, .envelope::after {
+      position: absolute;
+      bottom: -78px;
+      width: 220px;
+      height: 160px;
+      border: 1px solid #e9cfc8;
+      background: #fff8f2aa;
+      content: "";
+      transform: rotate(35deg);
+    }
+    .envelope::before { left: -44px; }
+    .envelope::after { right: -44px; transform: rotate(-35deg); }
+    .postmark, .stamp { position: absolute; z-index: 1; color: #997b76; }
+    .postmark { top: 20px; left: 22px; font-size: 10px; letter-spacing: .13em; }
+    .stamp {
+      top: 13px;
+      right: 18px;
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border: 1px dashed #c98383;
+      border-radius: 9px;
+      background: #fffaf3;
+      color: var(--rose);
+      font: 20px 'Caveat', cursive;
+      transform: rotate(7deg);
+    }
+    .primary, .secondary, .choice, .mood, .remove {
+      border: 0;
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .primary {
+      z-index: 2;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: var(--rose);
+      box-shadow: 0 8px 22px #bc687733;
+      color: white;
+      font-weight: 700;
+    }
+    .primary:hover, .secondary:hover, .choice:hover, .mood:hover { transform: translateY(-2px); }
+    .letter {
+      display: none;
+      position: relative;
+      margin-top: 18px;
+      padding: clamp(27px, 6vw, 58px);
+      border: 1px solid #f2e5d9;
+      border-radius: 4px;
+      background:
+        repeating-linear-gradient(to bottom, transparent 0 39px, #c9aa8b1c 40px),
+        var(--paper);
+      box-shadow: var(--shadow);
+      animation: reveal .6s ease both;
+    }
+    .letter.open { display: block; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(12px); } }
+    .letter-date { color: var(--muted); text-align: right; font: 19px 'Caveat', cursive; }
+    .letter h2 { margin: 22px 0 10px; color: var(--rose-dark); font-size: 38px; }
+    .letter p { margin: 10px 0; font: 24px/1.55 'Caveat', cursive; }
+    .letter .signature { margin-top: 20px; text-align: right; }
+    .proposal {
+      margin-top: 25px;
+      padding: 22px;
+      border: 1px dashed #d5a39a;
+      border-radius: 18px;
+      background: #fff3ed;
+      text-align: center;
+    }
+    .proposal h3 { margin: 0 0 15px; color: var(--rose-dark); font-size: 32px; }
+    .button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .secondary, .choice {
+      padding: 12px 19px;
+      border: 1px solid #ecd8d1;
+      border-radius: 999px;
+      background: #fffaf6;
+      font-weight: 700;
+    }
+    .secondary.yes { border-color: var(--rose); background: var(--rose); color: white; }
+    .reply { min-height: 30px; margin: 14px 0 0; color: var(--rose-dark); font: 24px 'Caveat', cursive; }
+    .section-heading { margin: 0 0 8px; color: var(--rose-dark); font-size: 42px; }
+    .section-intro { margin: 0 0 22px; color: var(--muted); line-height: 1.7; }
+    .section { margin-top: 54px; scroll-margin-top: 24px; }
+    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 14px; }
+    .tiny-label { color: #aa8580; font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+    .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      min-width: 0;
+      padding: 24px;
+      border: 1px solid #f0e3dc;
+      border-radius: 20px;
+      background: #fffdf9dd;
+      box-shadow: 0 10px 30px #68494a0b;
+    }
+    .card h3 { margin: 0 0 5px; color: var(--rose-dark); font-size: 30px; }
+    .card p { color: var(--muted); line-height: 1.65; }
+    .mood-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .mood {
+      padding: 9px 13px;
+      border: 1px solid #efdeda;
+      border-radius: 999px;
+      background: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .mood[aria-pressed="true"] { border-color: var(--rose); background: #fae9e8; color: var(--rose-dark); }
+    .message-box {
+      min-height: 70px;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #fff4ef;
+      color: var(--rose-dark);
+      font: 23px/1.35 'Caveat', cursive;
+    }
+    .reason-card {
+      display: grid;
+      min-height: 152px;
+      place-items: center;
+      padding: 18px;
+      border: 1px dashed #e6c7bd;
+      border-radius: 16px;
+      background: linear-gradient(140deg, #fff8f1, #fce9e8);
+      color: #84575c;
+      font: 27px/1.35 'Caveat', cursive;
+      text-align: center;
+    }
+    .action { margin-top: 14px; }
+    .date-result { min-height: 72px; }
+    .quiz-question { margin: 12px 0; font-weight: 700; line-height: 1.6; }
+    .quiz-result { min-height: 48px; }
+    .wish-form { display: flex; gap: 8px; }
+    .wish-form input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid #e9d8d2;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .wish-list { display: grid; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .wish-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff5ef;
+      line-height: 1.45;
+    }
+    .remove { flex: 0 0 auto; padding: 4px 7px; border-radius: 8px; background: transparent; color: var(--rose-dark); }
+    .remove:hover { background: #f2dddd; }
+    .empty { color: var(--muted); font-size: 13px; }
+    .footer { margin-top: 55px; color: var(--muted); font: 22px 'Caveat', cursive; text-align: center; }
+    #hearts { position: fixed; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      animation: float-up linear forwards;
+      opacity: 0;
+    }
+    @keyframes float-up {
+      10% { opacity: .8; }
+      100% { opacity: 0; transform: translateY(-110vh) rotate(330deg) scale(1.3); }
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (max-width: 680px) {
+      .page { width: min(100% - 30px, 540px); padding-top: 18px; }
+      .hero { padding-top: 43px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .section-top { display: block; }
+      .letter p { font-size: 22px; }
+      .envelope { min-height: 135px; }
+      .postmark { top: 12px; left: 12px; font-size: 8px; }
+      .stamp { top: 9px; right: 10px; width: 48px; height: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<div id="hearts"></div>
+  <div id="hearts" aria-hidden="true"></div>
+  <main class="page">
+    <div class="topline"><span>Một góc nhỏ dành riêng cho Bông</span><span>làm bằng ♡ bởi Bún</span></div>
 
-<div class="wrap">
-  <div class="envelope">
-    <div class="postmark">FOR MY BÔNG • WITH LOVE</div>
-    <div class="stamp">♡ Bông</div>
-    <button class="open-note" onclick="openLetter()">Mở bức thư của Bún ♡</button>
-  </div>
+    <header class="hero">
+      <p class="eyebrow">Gửi người làm ngày thường hóa đặc biệt</p>
+      <h1>Gửi Bông <span class="hero-heart">♡</span></h1>
+      <p class="hero-copy">Bún có vài điều muốn nói, vài trò nhỏ muốn Bông thử, và thật nhiều điều dễ thương muốn cùng Bông khám phá.</p>
+    </header>
 
-  <main class="letter" id="letter">
-    <div class="tape"></div>
-    <div class="flower f1">🌷</div><div class="flower f2">🌸</div>
-
-    <div class="date">Một ngày rất bình thường…<br>nhưng Bún muốn viết điều không bình thường.</div>
-
-    <div class="salute">Gửi Bông của Bún,</div>
-
-    <div class="text">
-      <div class="line">Thật ra Bún đã nghĩ khá lâu mới quyết định viết những dòng này.</div>
-      <div class="line">Vì có những cảm xúc, nếu chỉ nói bằng một câu “anh thích em”,</div>
-      <div class="line">thì hình như <span class="highlight">chưa đủ để nói hết những gì Bún muốn nói với Bông.</span></div>
-      <br>
-      <div class="line">Từ lúc Bông xuất hiện, những ngày của Bún tự nhiên có thêm một người</div>
-      <div class="line">để mong chờ tin nhắn, để muốn kể những chuyện linh tinh,</div>
-      <div class="line">và đôi khi chỉ cần thấy Bông vui thôi… Bún cũng thấy vui theo.</div>
-      <br>
-      <div class="line">Bún không biết tương lai sẽ như thế nào.</div>
-      <div class="line">Nhưng Bún biết hiện tại mình <span class="highlight">thật sự muốn ở bên Bông</span>,</div>
-      <div class="line">muốn được quan tâm Bông, nghe Bông kể chuyện,</div>
-      <div class="line">và cùng Bông tạo ra thật nhiều kỷ niệm mà sau này nhớ lại vẫn thấy mỉm cười.</div>
-      <br>
-      <div class="line">Có thể Bún không phải người hoàn hảo,</div>
-      <div class="line">cũng chẳng phải lúc nào Bún cũng biết cách nói những điều thật hay.</div>
-      <div class="line">Nhưng nếu Bông cho Bún một cơ hội,</div>
-      <div class="line">Bún sẽ nghiêm túc với tình cảm này.</div>
-
-      <div class="doodle">♡ ･ﾟ✧ ･ﾟ♡ ･ﾟ✧ ･ﾟ♡</div>
-
-      <div class="line">Vậy nên… Bông à,</div>
-      <div class="line"><span class="highlight">Bún muốn hỏi Bông một điều.</span></div>
-    </div>
-
-    <div class="question">
-      <h2>Bông có muốn trở thành người yêu của Bún không? ♡</h2>
-      <div class="buttons">
-        <button class="btn yes" onclick="yesAnswer()">Đồng ý ♡</button>
-        <button class="btn later" id="later" onclick="moveButton()">Để Bông suy nghĩ thêm…</button>
+    <section class="letter-wrap" aria-labelledby="letter-heading">
+      <div class="envelope">
+        <span class="postmark">FOR MY BÔNG · WITH LOVE</span>
+        <span class="stamp">♡ Bông</span>
+        <button class="primary" id="open-letter" type="button" aria-expanded="false" aria-controls="letter">Mở bức thư của Bún ♡</button>
       </div>
-      <div class="reply" id="reply"></div>
-    </div>
+      <article class="letter" id="letter">
+        <div class="letter-date">Một ngày rất bình thường…<br>nhưng Bún muốn viết điều không bình thường.</div>
+        <h2 id="letter-heading">Gửi Bông của Bún,</h2>
+        <p>Thật ra Bún đã nghĩ khá lâu mới quyết định viết những dòng này. Có những cảm xúc, nếu chỉ nói bằng một câu “anh thích em”, thì hình như chưa đủ để nói hết những gì Bún muốn nói với Bông.</p>
+        <p>Từ lúc Bông xuất hiện, những ngày của Bún tự nhiên có thêm một người để mong chờ tin nhắn, để muốn kể những chuyện linh tinh. Đôi khi chỉ cần thấy Bông vui thôi… Bún cũng thấy vui theo.</p>
+        <p>Bún không biết tương lai sẽ như thế nào. Nhưng Bún biết hiện tại mình thật sự muốn ở bên Bông, muốn được quan tâm Bông, nghe Bông kể chuyện và cùng Bông tạo ra thật nhiều kỷ niệm.</p>
+        <p>Bún không hoàn hảo, nhưng nếu Bông cho Bún một cơ hội, Bún sẽ nghiêm túc với tình cảm này. Còn câu trả lời thì Bông cứ chọn theo cảm xúc của mình nha. ♡</p>
+        <div class="proposal">
+          <h3>Bông có muốn cùng Bún viết tiếp câu chuyện này không?</h3>
+          <div class="button-row">
+            <button class="secondary yes" id="yes-button" type="button">Đồng ý ♡</button>
+            <button class="secondary" id="later-button" type="button">Bông muốn suy nghĩ thêm</button>
+          </div>
+          <p class="reply" id="proposal-reply" aria-live="polite"></p>
+        </div>
+        <p class="signature">Thương Bông,<br><b>Bún ♡</b></p>
+      </article>
+    </section>
 
-    <div class="signature">
-      Thương Bông,<br>
-      <b>Bún ♡</b>
-    </div>
+    <section class="section" aria-labelledby="play-heading">
+      <div class="section-top">
+        <div>
+          <p class="tiny-label">MỘT CHÚT DỄ THƯƠNG MỖI NGÀY</p>
+          <h2 class="section-heading" id="play-heading">Bông muốn chơi gì trước?</h2>
+        </div>
+      </div>
+      <p class="section-intro">Không cần trả lời câu hỏi nào cả — cứ chọn điều làm Bông vui nhé.</p>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>Tâm trạng hôm nay 🌤️</h3>
+          <p>Chọn một chiếc mood, Bún gửi Bông một lời nhắn tương ứng.</p>
+          <div class="mood-list" role="group" aria-label="Chọn tâm trạng">
+            <button class="mood" type="button" data-mood="vui" aria-pressed="false">Vui vẻ ☀️</button>
+            <button class="mood" type="button" data-mood="met" aria-pressed="false">Hơi mệt 🌧️</button>
+            <button class="mood" type="button" data-mood="nho" aria-pressed="false">Nhớ ai đó 💌</button>
+            <button class="mood" type="button" data-mood="batky" aria-pressed="false">Bất kỳ ♡</button>
+          </div>
+          <div class="message-box" id="mood-message" aria-live="polite">Bông chọn tâm trạng của mình nha…</div>
+        </article>
+
+        <article class="card">
+          <h3>Một lý do Bún quý Bông 💗</h3>
+          <p>Nhấn nút để mở một mẩu lời thương nho nhỏ.</p>
+          <div class="reason-card" id="reason" aria-live="polite">“Bông cứ là Bông thôi, vậy là đủ đáng yêu rồi.”</div>
+          <button class="primary action" id="reason-button" type="button">Bốc một lý do ♡</button>
+        </article>
+
+        <article class="card">
+          <h3>Hẹn hò đi đâu ta? 🍓</h3>
+          <p>Để chiếc hộp này chọn một buổi hẹn thật xinh cho hai đứa.</p>
+          <div class="message-box date-result" id="date-result" aria-live="polite">Chưa biết đi đâu cũng vui, miễn là đi cùng nhau.</div>
+          <button class="primary action" id="date-button" type="button">Chọn giúp Bông!</button>
+        </article>
+
+        <article class="card">
+          <h3>Quiz hiểu nhau vui vui ✨</h3>
+          <p class="quiz-question" id="quiz-question">Bông chọn một điều mình thích nhất trong buổi hẹn nha:</p>
+          <div class="button-row" id="quiz-options"></div>
+          <div class="message-box quiz-result" id="quiz-result" aria-live="polite">Không có đáp án sai đâu, Bún chỉ muốn hiểu Bông hơn thôi ♡</div>
+          <button class="secondary action" id="quiz-next" type="button">Câu tiếp theo →</button>
+        </article>
+
+        <article class="card">
+          <h3>Danh sách “mình cùng làm” 📒</h3>
+          <p>Ghi lại một điều Bông muốn cùng Bún làm. Danh sách được lưu trên thiết bị này.</p>
+          <form class="wish-form" id="wish-form">
+            <label class="sr-only" for="wish-input">Điều Bông muốn cùng Bún làm</label>
+            <input id="wish-input" name="wish" maxlength="100" placeholder="Ví dụ: đi ngắm hoàng hôn…" required>
+            <button class="primary" type="submit">Thêm</button>
+          </form>
+          <ul class="wish-list" id="wish-list" aria-live="polite"></ul>
+          <p class="empty" id="wish-empty">Chưa có điều ước nào, Bông viết điều đầu tiên nhé!</p>
+          <p class="sr-only" id="storage-status" aria-live="polite"></p>
+        </article>
+
+        <article class="card">
+          <h3>Lời khen hôm nay 🌷</h3>
+          <p>Phòng khi Bông cần một lời nhắc rằng có người luôn nhìn thấy những điều tốt đẹp ở Bông.</p>
+          <div class="message-box" id="compliment" aria-live="polite">Bông có một nụ cười làm mọi thứ dịu dàng hơn.</div>
+          <button class="secondary action" id="compliment-button" type="button">Cho Bông lời khen khác</button>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">Nếu Bông đọc đến đây, Bún mong Bông đã mỉm cười ít nhất một lần. ♡</footer>
   </main>
 
-  <div class="footer">Nếu Bông đang đọc đến đây… thì Bún đã hồi hộp từ nãy giờ rồi. ♡</div>
-</div>
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+    const letter = document.getElementById('letter');
+    let heartsStarted = false;
 
-<script>
-const letter=document.getElementById('letter');
+    function floatHearts(count = 12) {
+      for (let i = 0; i < count; i += 1) {
+        window.setTimeout(() => {
+          const heart = document.createElement('span');
+          heart.className = 'heart';
+          heart.textContent = ['♡', '♥', '💕', '🌸'][Math.floor(Math.random() * 4)];
+          heart.style.left = `${Math.random() * 100}vw`;
+          heart.style.fontSize = `${14 + Math.random() * 18}px`;
+          heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+          heartsContainer.append(heart);
+          heart.addEventListener('animationend', () => heart.remove(), { once: true });
+        }, i * 100);
+      }
+    }
 
-function openLetter(){
-  letter.classList.add('show');
-  document.querySelector('.open-note').style.display='none';
-  setTimeout(()=>{
-    document.querySelectorAll('.line').forEach((el,i)=>{
-      setTimeout(()=>el.classList.add('visible'),i*350);
+    document.getElementById('open-letter').addEventListener('click', (event) => {
+      letter.classList.add('open');
+      event.currentTarget.setAttribute('aria-expanded', 'true');
+      event.currentTarget.textContent = 'Bức thư đã mở ♡';
+      event.currentTarget.disabled = true;
+      if (!heartsStarted) {
+        heartsStarted = true;
+        floatHearts(18);
+      }
+      letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-  },500);
-  startHearts();
-}
 
-function startHearts(){
-  setInterval(()=>{
-    const h=document.createElement('div');
-    h.className='heart';
-    h.textContent=['♡','♥','🌸','✿','💕'][Math.floor(Math.random()*5)];
-    h.style.left=Math.random()*100+'vw';
-    h.style.fontSize=(14+Math.random()*18)+'px';
-    h.style.animationDuration=(5+Math.random()*5)+'s';
-    document.getElementById('hearts').appendChild(h);
-    setTimeout(()=>h.remove(),10000);
-  },700);
-}
+    document.getElementById('yes-button').addEventListener('click', () => {
+      document.getElementById('proposal-reply').textContent = 'Bún vui lắm… cảm ơn Bông đã cho chúng mình một cơ hội 🥹💕';
+      floatHearts(24);
+    });
+    document.getElementById('later-button').addEventListener('click', () => {
+      document.getElementById('proposal-reply').textContent = 'Bông cứ từ từ nha. Bún tôn trọng cảm xúc và quyết định của Bông ♡';
+    });
 
-function yesAnswer(){
-  const reply=document.getElementById('reply');
-  reply.style.display='block';
-  reply.innerHTML='Bún biết ngay mà… 🥹💕<br>Vậy từ hôm nay, Bông chính thức là người thương của Bún nhé!';
-  for(let i=0;i<22;i++){
-    setTimeout(()=>{
-      const h=document.createElement('div');
-      h.className='heart';h.textContent=['♥','♡','💕','🌷'][Math.floor(Math.random()*4)];
-      h.style.left=(35+Math.random()*30)+'vw';
-      h.style.bottom='25%';
-      h.style.fontSize=(18+Math.random()*25)+'px';
-      h.style.animationDuration=(2+Math.random()*2)+'s';
-      document.getElementById('hearts').appendChild(h);
-      setTimeout(()=>h.remove(),4500);
-    },i*90);
-  }
-}
+    const moodMessages = {
+      vui: ['Bông vui thì hôm nay tự nhiên cũng đẹp hơn rồi đó ☀️', 'Giữ nụ cười ấy nha, Bún thích nhìn Bông vui lắm!'],
+      met: ['Bông nghỉ ngơi một chút nha. Không cần lúc nào cũng phải thật mạnh mẽ đâu ♡', 'Gửi Bông một cái ôm thật nhẹ. Hôm nay Bông đã cố gắng nhiều rồi.'],
+      nho: ['Bún cũng đang nghĩ về Bông đây nè 💌', 'Nếu đang nhớ Bún thì gửi một chiếc tin nhắn nha, Bún trả lời liền!'],
+      batky: ['Bông xứng đáng được yêu thương vào mọi ngày, kể cả những ngày bình thường nhất ♡', 'Nhắc nhẹ: có một người đang âm thầm mong Bông có một ngày thật dịu dàng.']
+    };
+    document.querySelectorAll('.mood').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.mood').forEach((mood) => mood.setAttribute('aria-pressed', 'false'));
+        button.setAttribute('aria-pressed', 'true');
+        const messages = moodMessages[button.dataset.mood];
+        document.getElementById('mood-message').textContent = messages[Math.floor(Math.random() * messages.length)];
+      });
+    });
 
-function moveButton(){
-  const b=document.getElementById('later');
-  const x=(Math.random()*160-80);
-  const y=(Math.random()*80-40);
-  b.style.transform=`translate(${x}px,${y}px)`;
-  b.textContent=['Khoan đã Bông 😳','Bông nghĩ nhanh thôi nha 🥺','Bún hồi hộp lắm đó…','Một cơ hội thôi mà ♡'][Math.floor(Math.random()*4)];
-}
-</script>
+    const reasons = [
+      'Bông biết quan tâm mọi người theo cách rất riêng.',
+      'Cách Bông kể những chuyện linh tinh cũng làm Bún muốn nghe mãi.',
+      'Bông khiến những ngày bình thường có thêm điều để mong chờ.',
+      'Bông luôn là chính mình — và điều đó thật đáng quý.',
+      'Bún thích sự ấm áp trong cách Bông đối xử với mọi người.',
+      'Chỉ cần Bông cười thôi, Bún cũng thấy vui lây rồi.',
+      'Có Bông ở đây làm thế giới của Bún dịu dàng hơn một chút.'
+    ];
+    document.getElementById('reason-button').addEventListener('click', () => {
+      document.getElementById('reason').textContent = `“${reasons[Math.floor(Math.random() * reasons.length)]}”`;
+    });
+
+    const dateIdeas = [
+      'Cùng đi ăn món Bông thích rồi đi dạo một vòng 🍜',
+      'Tìm một quán cà phê xinh, gọi món ngon và kể nhau nghe đủ chuyện ☕',
+      'Đi ngắm hoàng hôn, chụp vài tấm ảnh thật ngốc nghếch 🌇',
+      'Ở nhà xem phim, chuẩn bị đồ ăn vặt và tranh nhau chọn phim 🍿',
+      'Cùng đi nhà sách hoặc tiệm hoa, mỗi người chọn một món tặng nhau 📚',
+      'Đi dạo công viên, mua kem rồi ngồi tám chuyện 🍦',
+      'Cùng nấu một món mới — ngon hay không thì vẫn có kỷ niệm 🍳'
+    ];
+    document.getElementById('date-button').addEventListener('click', () => {
+      document.getElementById('date-result').textContent = dateIdeas[Math.floor(Math.random() * dateIdeas.length)];
+    });
+
+    const quiz = [
+      {
+        question: 'Bông chọn một điều mình thích nhất trong buổi hẹn nha:',
+        options: ['Ăn món ngon 🍓', 'Đi dạo 🌿', 'Ngồi kể chuyện ☕'],
+        replies: ['Đã ghi nhớ quán ngon cho buổi hẹn tương lai rồi nha!', 'Đi cạnh Bông thôi là Bún thấy vui rồi.', 'Bún sẽ để dành thật nhiều chuyện hay để kể Bông nghe!']
+      },
+      {
+        question: 'Nếu có một ngày rảnh rỗi, Bông muốn:',
+        options: ['Ra ngoài khám phá 🗺️', 'Ở nhà nghỉ ngơi 🧸', 'Cùng nhau làm gì đó 🎨'],
+        replies: ['Bún sẽ chuẩn bị một chuyến đi nho nhỏ cho hai đứa.', 'Một ngày chậm rãi bên Bông nghe thích ghê.', 'Bông chọn hoạt động, Bún làm đồng đội nha!']
+      },
+      {
+        question: 'Bông thích được quan tâm bằng cách nào?',
+        options: ['Một lời hỏi han 💬', 'Một món ăn ngon 🍰', 'Dành thời gian bên nhau 🕰️'],
+        replies: ['Bún sẽ nhớ hỏi thăm Bông nhiều hơn nhé ♡', 'Đã hiểu tín hiệu: cần chuẩn bị món ngon!', 'Thời gian bên Bông là món quà Bún cũng thích.']
+      }
+    ];
+    let quizIndex = 0;
+    function renderQuiz() {
+      const current = quiz[quizIndex];
+      document.getElementById('quiz-question').textContent = current.question;
+      document.getElementById('quiz-result').textContent = 'Không có đáp án sai đâu, Bún chỉ muốn hiểu Bông hơn thôi ♡';
+      const options = document.getElementById('quiz-options');
+      options.replaceChildren();
+      current.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'choice';
+        button.type = 'button';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          document.getElementById('quiz-result').textContent = current.replies[index];
+        });
+        options.append(button);
+      });
+    }
+    document.getElementById('quiz-next').addEventListener('click', () => {
+      quizIndex = (quizIndex + 1) % quiz.length;
+      renderQuiz();
+    });
+    renderQuiz();
+
+    const storageKey = 'bun-bong-wishlist';
+    const wishList = document.getElementById('wish-list');
+    const emptyWish = document.getElementById('wish-empty');
+    const storageStatus = document.getElementById('storage-status');
+    let wishes = [];
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.every((wish) => typeof wish === 'string')) {
+          wishes = parsed.slice(0, 30);
+        }
+      }
+    } catch (error) {
+      storageStatus.textContent = 'Trình duyệt không cho phép lưu danh sách. Bông vẫn có thể thêm điều ước trong lần mở trang này.';
+    }
+
+    function saveWishes() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(wishes));
+        storageStatus.textContent = 'Danh sách đã được lưu trên thiết bị này.';
+      } catch (error) {
+        storageStatus.textContent = 'Không thể lưu vào thiết bị này. Danh sách chỉ còn trong lần mở trang hiện tại.';
+      }
+    }
+    function renderWishes() {
+      wishList.replaceChildren();
+      emptyWish.hidden = wishes.length > 0;
+      wishes.forEach((wish, index) => {
+        const item = document.createElement('li');
+        item.className = 'wish-item';
+        const text = document.createElement('span');
+        text.textContent = `♡ ${wish}`;
+        const remove = document.createElement('button');
+        remove.className = 'remove';
+        remove.type = 'button';
+        remove.textContent = 'Xóa';
+        remove.setAttribute('aria-label', `Xóa điều ước: ${wish}`);
+        remove.addEventListener('click', () => {
+          wishes.splice(index, 1);
+          saveWishes();
+          renderWishes();
+        });
+        item.append(text, remove);
+        wishList.append(item);
+      });
+    }
+    document.getElementById('wish-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = document.getElementById('wish-input');
+      const wish = input.value.trim();
+      if (!wish) {
+        input.focus();
+        return;
+      }
+      if (wishes.length >= 30) {
+        storageStatus.textContent = 'Danh sách đã có 30 điều rồi. Bông xóa một điều trước khi thêm nhé.';
+        return;
+      }
+      wishes.push(wish);
+      saveWishes();
+      renderWishes();
+      input.value = '';
+      input.focus();
+    });
+    renderWishes();
+
+    const compliments = [
+      'Bông có một nụ cười làm mọi thứ dịu dàng hơn.',
+      'Bông đáng yêu ngay cả khi Bông không nhận ra điều đó.',
+      'Bông đã cố gắng rất nhiều rồi — Bún tự hào về Bông.',
+      'Cách Bông là chính mình chính là điều khiến Bông đặc biệt.',
+      'Mong Bông nhớ rằng mình luôn xứng đáng được yêu thương.',
+      'Có Bông trong một ngày bình thường cũng đủ làm ngày ấy vui hơn.'
+    ];
+    let lastCompliment = 0;
+    document.getElementById('compliment-button').addEventListener('click', () => {
+      let next = Math.floor(Math.random() * compliments.length);
+      if (compliments.length > 1 && next === lastCompliment) next = (next + 1) % compliments.length;
+      lastCompliment = next;
+      document.getElementById('compliment').textContent = compliments[next];
+    });
+  </script>
 </body>
 </html>
